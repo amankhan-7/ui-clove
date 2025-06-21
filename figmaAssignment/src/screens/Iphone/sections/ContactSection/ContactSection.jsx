@@ -4,155 +4,87 @@ import { ScrollArea, ScrollBar } from "../../../../components/ui/scroll-area";
 
 export const ContactSection = () => {
   const locations = [
-    {
-      city: "Delhi/NCR",
-      clinics: "190 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934678.svg",
-      fullWidth: true,
-    },
-    {
-      city: "Banglore",
-      clinics: "110 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934722.svg",
-      fullWidth: true,
-    },
-    {
-      city: "Mumbai",
-      clinics: "40 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934686.svg",
-      fullWidth: false,
-    },
-    {
-      city: "Chennai",
-      clinics: "59 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934680.svg",
-      fullWidth: false,
-    },
-    {
-      city: "Hyderabad",
-      clinics: "76 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/vector.svg",
-      fullWidth: false,
-      iconLeft: "17px",
-    },
-    {
-      city: "Punjab",
-      clinics: "27 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/group.png",
-      fullWidth: false,
-      iconTop: "17px",
-      iconLeft: "3.5",
-    },
-    {
-      city: "Hyderabad",
-      clinics: "76 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/vector.svg",
-      fullWidth: false,
-      iconLeft: "17px",
-    },
-    {
-      city: "Punjab",
-      clinics: "27 Clinics",
-      icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/group-1.png",
-      fullWidth: false,
-      iconTop: "17px",
-      iconLeft: "3.5",
-    },
+    { city: "Delhi/NCR", clinics: "190 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934678.svg" },
+    { city: "Banglore", clinics: "110 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934722.svg" },
+    { city: "Mumbai", clinics: "40 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934686.svg" },
+    { city: "Chennai", clinics: "59 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-260934680.svg" },
+    { city: "Hyderabad", clinics: "76 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/vector.svg" },
+    { city: "Punjab", clinics: "27 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/group.png" },
+    { city: "Pune", clinics: "76 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/vector.svg" },
+    { city: "Ahemdabad", clinics: "27 Clinics", icon: "https://c.animaapp.com/mc5ug0d6upZiHg/img/group-1.png" },
   ];
 
   const galleryImages = [
     "https://c.animaapp.com/mc5ug0d6upZiHg/img/rectangle-3046.png",
     "https://c.animaapp.com/mc5ug0d6upZiHg/img/rectangle-3046-1.png",
     "https://c.animaapp.com/mc5ug0d6upZiHg/img/rectangle-3046-2.png",
+    "https://c.animaapp.com/mc5ug0d6upZiHg/img/rectangle-3046-1.png", // duplicated to get 2×2
   ];
 
-  const renderLocationCard = (location, index) => {
-    const cardWidth = location.fullWidth ? "flex-1 grow" : "w-[170px]";
-    const iconTop = location.iconTop || (location.fullWidth ? "4" : "4");
-    const iconLeft =
-      location.iconLeft ||
-      (location.fullWidth ? (index % 2 === 0 ? "2.5" : "11px") : "9px");
-
-    return (
-      <Card
-        key={`${location.city}-${index}`}
-        className={`relative ${cardWidth} h-[86px] bg-white rounded-lg overflow-hidden border border-solid border-[#d0d0d0]`}
-      >
-        <CardContent className="p-0">
-          <div
-            className="inline-flex items-center gap-3 relative"
-            style={{ top: iconTop, left: iconLeft }}
-          >
-            <img
-              className="relative w-auto h-[54px]"
-              alt={`${location.city} icon`}
-              src={location.icon}
-            />
-            <div className="flex flex-col items-start gap-3 relative">
-              <div className="relative w-fit mt-[-1.00px] font-bold text-text-1 text-base leading-6 whitespace-nowrap">
-                {location.city}
-              </div>
-              <div className="relative font-semibold text-text-1 text-base leading-6">
-                {location.clinics}
-              </div>
-            </div>
+  const renderLocationCard = ({ city, clinics, icon }, idx) => (
+    <Card
+      key={city}
+      className="relative w-full max-w-full h-[86px] rounded-lg border border-[#d0d0d0] bg-white px-3"
+    >
+      <CardContent className="p-0">
+        <div className="flex items-center gap-3 absolute top-4 left-3">
+          <img src={icon} alt={`${city} icon`} className="h-[54px] w-7 md:w-auto" />
+          <div>
+            <p className="font-bold text-text-1 leading-6">{city}</p>
+            <p className="font-semibold text-text-1 leading-6">{clinics}</p>
           </div>
-        </CardContent>
-      </Card>
-    );
-  };
+        </div>
+      </CardContent>
+    </Card>
+  );
 
   return (
-    <div className="flex flex-col w-full max-w-[350px] items-start justify-end gap-10 relative">
-      <div className="flex flex-col items-center gap-2 relative self-stretch w-full">
-        <h2 className="relative w-fit mt-[-1.00px] font-bold text-text-1 text-xl leading-[26px] whitespace-nowrap">
+    <section className="w-full max-w-7xl mx-auto px-4 lg:px-6">
+      {/* headline */}
+      <header className="mb-8 lg:mb-10">
+        <h2 className="text-xl lg:text-2xl font-bold text-text-1">
           Find Us Across India
         </h2>
-        <p className="relative self-stretch font-normal text-text-2 text-base text-center leading-[20.8px]">
-          With over 500 clinics across India, you&apos;re never too far from a
-          Clove Dental clinic. Choose your preferred city to book an
-          appointment.
+        <p className="mt-2 text-base text-text-2 max-w-3xl">
+          With over 500 clinics across India, you’re never too far from a Clove
+          Dental clinic. Choose your preferred city to book an appointment.
         </p>
-      </div>
+      </header>
 
-      <div className="flex flex-col w-full items-start gap-2.5 relative">
-        <div className="flex items-center gap-2.5 relative self-stretch w-full">
-          {renderLocationCard(locations[0], 0)}
-          {renderLocationCard(locations[1], 1)}
-        </div>
-        <div className="flex items-center gap-2.5 relative self-stretch w-full">
-          {renderLocationCard(locations[2], 2)}
-          {renderLocationCard(locations[3], 3)}
-        </div>
-        <div className="flex items-center gap-2.5 relative self-stretch w-full">
-          {renderLocationCard(locations[4], 4)}
-          {renderLocationCard(locations[5], 5)}
-        </div>
-        <div className="flex items-center gap-2.5 relative self-stretch w-full">
-          {renderLocationCard(locations[6], 6)}
-          {renderLocationCard(locations[7], 7)}
-        </div>
-      </div>
-
-      <ScrollArea className="w-full">
-        <div className="flex items-center gap-3 relative self-stretch w-full">
-          {galleryImages.map((image, index) => (
-            <Card
-              key={`gallery-${index}`}
-              className="inline-flex flex-col items-end justify-end relative self-stretch flex-shrink-0 bg-white rounded-lg overflow-hidden border border-solid border-[#afafaf]"
-            >
-              <CardContent className="p-0">
-                <img
-                  className="relative self-stretch w-full h-[207px] object-cover"
-                  alt={`Clinic image ${index + 1}`}
-                  src={image}
-                />
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea>
+      {/* desktop row (becomes column on mobile) */}
+    <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10 w-full">
+  {/* ─────────── Locations ─────────── */}
+  <div className="flex flex-col gap-2.5 lg:w-[460px]">
+    <div className="grid grid-cols-2 gap-5">
+      {locations.map(renderLocationCard)}
     </div>
+  </div>
+
+  {/* ─────────── Gallery ─────────── */}
+  {/* mobile scroll */}
+ <ScrollArea className="mt-10 lg:hidden">
+  <div className="flex gap-3">
+    {galleryImages.map((src, idx) => (
+      <Card key={idx} className="min-w-[260px] h-[207px] flex-shrink-0 ...">
+        <CardContent className="p-0">
+          <img src={src} alt={`Clinic ${idx + 1}`} className="w-full h-[200px] object-cover rounded-md"/>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</ScrollArea>
+
+  {/* desktop grid */}
+  <div className="hidden lg:grid lg:grid-cols-2 lg:gap-5 lg:flex-1">
+    {galleryImages.slice(0, 4).map((src, idx) => (
+      <Card key={idx} className="w-full h-[200px] rounded-lg border border-[#afafaf] overflow-hidden">
+        <CardContent className="p-0">
+          <img src={src} alt={`Clinic ${idx + 1}`} className="w-full h-full object-cover" />
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</div>
+    </section>
   );
 };

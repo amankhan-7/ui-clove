@@ -31,52 +31,51 @@ export const BlogSection = () => {
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
   ];
-
   return (
-    <section className="flex flex-col items-center gap-10 px-5 py-10 relative self-stretch w-full flex-[0_0_auto] bg-[#fff9f5]">
-      <div className="inline-flex items-center justify-center gap-3 relative flex-[0_0_auto]">
-        <img
-          className="relative w-[87.67px] h-[88px] ml-[-0.14px]"
-          alt="Frame"
-          src="https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-51888.svg"
-        />
+    <section className="flex flex-col md:flex-row items-center gap-10 px-5 py-10 w-full bg-[#fff9f5] rounded-lg">
+      {/* ─── Left Branding Section ─── */}
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-start gap-3 md:gap-8 lg:gap-12 px-4 md:pl-20 lg:pl-25">
+  <img
+    className="w-[88px] h-[88px]"
+    alt="Frame"
+    src="https://c.animaapp.com/mc5ug0d6upZiHg/img/frame-51888.svg"
+  />
 
-        <div className="inline-flex flex-col items-center justify-center gap-4 relative flex-[0_0_auto]">
-          <div className="inline-flex items-center justify-center gap-[7.5px] relative flex-[0_0_auto]">
-            <img
-              className="relative w-[24.7px] h-[23.57px]"
-              alt="Star"
-              src="https://c.animaapp.com/mc5ug0d6upZiHg/img/star-10.svg"
-            />
-            <img
-              className="relative w-[1.5px] h-[26.25px]"
-              alt="Line"
-              src="https://c.animaapp.com/mc5ug0d6upZiHg/img/line-40.svg"
-            />
-            <Badge
-              variant="outline"
-              className="mt-[-0.75px] [font-family:'Open_Sans',Helvetica] font-bold text-text-1 text-2xl text-center p-0 border-0"
-            >
-              4.9
-            </Badge>
-          </div>
+  <div className="flex flex-col items-center md:items-start justify-center gap-2 md:gap-3">
+    <div className="flex items-center gap-2">
+      <img
+        className="w-[24.7px] h-[23.57px]"
+        alt="Star"
+        src="https://c.animaapp.com/mc5ug0d6upZiHg/img/star-10.svg"
+      />
+      <img
+        className="w-[1.5px] h-[26.25px]"
+        alt="Line"
+        src="https://c.animaapp.com/mc5ug0d6upZiHg/img/line-40.svg"
+      />
+      <Badge
+        variant="outline"
+        className="[font-family:'Open_Sans',Helvetica] font-bold text-text-1 text-2xl border-0"
+      >
+        4.9
+      </Badge>
+    </div>
 
-          <div className="relative w-fit [font-family:'Raleway',Helvetica] font-normal text-transparent text-2xl text-center tracking-[0] leading-normal whitespace-nowrap">
-            <span className="font-bold text-[#ea7d28]">(</span>
-            <span className="[font-family:'Open_Sans',Helvetica] font-bold text-[#ea7d28]">
-              1.6
-            </span>
-            <span className="font-bold text-[#ea7d28]"> Lakh +)</span>
-          </div>
+    <div className="[font-family:'Raleway',Helvetica] font-normal text-2xl text-center md:text-left">
+      <span className="[font-family:'Open_Sans',Helvetica] text-[20px] font-bold text-[#ea7d28]">
+        (1.6 Lakh + )
+      </span>
+    </div>
 
-          <div className="relative w-fit [font-family:'Figtree',Helvetica] font-semibold text-text-2 text-base text-center tracking-[0] leading-normal whitespace-nowrap">
-            Verified Google Ratings
-          </div>
-        </div>
-      </div>
+    <div className="[font-family:'Figtree',Helvetica] font-semibold text-text-2 text-base text-center md:text-left md:text-sm lg:text-base">
+      Verified Google Ratings
+    </div>
+  </div>
+</div>
 
-      <ScrollArea className="w-[350px] relative">
-        <div className="flex items-start gap-5 pb-4">
+      {/* ─── Scrollable Testimonials Section ─── */}
+      <ScrollArea className="w-full">
+        <div className="flex gap-5 pb-4 w-fit">
           {testimonials.map((testimonial) => (
             <Card
               key={testimonial.id}
@@ -98,12 +97,12 @@ export const BlogSection = () => {
                   />
                 </Avatar>
 
-                <div className="inline-flex flex-col items-center justify-center gap-[9px] w-full">
-                  <h3 className="font-bold text-[#303030] text-lg [font-family:'Figtree',Helvetica] tracking-[0] leading-normal whitespace-nowrap">
+                <div className="flex flex-col items-center gap-[9px] w-full">
+                  <h3 className="font-bold text-[#303030] text-lg [font-family:'Figtree',Helvetica]">
                     {testimonial.name}
                   </h3>
 
-                  <div className="relative w-[133.56px] h-6 flex">
+                  <div className="flex space-x-1">
                     {[...Array(4)].map((_, i) => (
                       <img
                         key={i}
@@ -115,12 +114,12 @@ export const BlogSection = () => {
                   </div>
                 </div>
 
-                <p className="w-full [font-family:'Figtree',Helvetica] font-normal text-[#464646] text-base tracking-[0] leading-6">
+                <p className="w-full [font-family:'Figtree',Helvetica] font-normal text-[#464646] text-base leading-6">
                   {testimonial.text}
                 </p>
 
-                <div className="flex items-center justify-end gap-2 self-stretch w-full">
-                  <span className="[font-family:'Figtree',Helvetica] font-semibold text-[#e9811f] text-base tracking-[0.32px] leading-[20.8px] whitespace-nowrap">
+                <div className="flex items-center justify-end gap-2 w-full">
+                  <span className="[font-family:'Figtree',Helvetica] font-semibold text-[#e9811f] text-base leading-[20.8px]">
                     Read more
                   </span>
                   <img

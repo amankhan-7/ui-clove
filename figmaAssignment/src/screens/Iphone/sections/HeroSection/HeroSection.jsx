@@ -1,10 +1,9 @@
 import React from "react";
 import { Card, CardContent } from "../../../../components/ui/card";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "../../../../components/ui/carousel";
+  ScrollArea,
+  ScrollBar,
+} from "../../../../components/ui/scroll-area";
 
 export const HeroSection = () => {
   const testimonials = [
@@ -36,44 +35,47 @@ export const HeroSection = () => {
   ];
 
   return (
-    <section className="flex flex-col items-start justify-center gap-5 w-full">
-      <header className="flex flex-col items-center justify-center gap-2 w-full">
-        <h2 className="font-bold text-text-1 text-xl leading-6 font-['Figtree',Helvetica] text-center tracking-normal">
+    <section className="flex flex-col items-center gap-5 w-full px-4">
+      {/* heading */}
+      <header className="text-center">
+        <h2 className="text-lg font-bold text-black">
           Real Smiles, Real Transformations
         </h2>
-        <p className="font-['Figtree',Helvetica] font-normal text-text-2 text-base text-center tracking-normal leading-[20.8px]">
+        <p className="text-base text-text-2 leading-5">
           See the life-changing results our dental implant patients enjoy
         </p>
       </header>
 
-      <Carousel className="w-full overflow-x-auto">
-        <CarouselContent className="flex gap-10">
-          {testimonials.map((testimonial) => (
-            <CarouselItem
-              key={testimonial.id}
-              className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+      {/* pure Radix ScrollArea carousel */}
+      <ScrollArea className="w-full">
+        <div className="flex gap-4 w-max">
+          {testimonials.map((t) => (
+            <div
+              /*  --> width fixed + no shrinking → true overflow */
+              key={t.id}
+              className="shrink-0 w-[260px] sm:w-[300px]"
             >
               <Card className="border-none shadow-none">
-                <CardContent className="p-0 flex flex-col items-start gap-3">
+                <CardContent className="p-0 flex flex-col gap-3">
                   <img
-                    className="w-full h-[200px] object-cover"
-                    alt={`${testimonial.name}'s transformation`}
-                    src={testimonial.image}
+                    src={t.image}
+                    alt={`${t.name}'s transformation`}
+                    /* keep full image, no crop */
+                    className="w-full h-auto max-h-[220px] object-contain rounded-md"
                   />
-                  <div className="flex items-start justify-between w-full">
-                    <span className="font-['Figtree',Helvetica] font-semibold text-[#1a1a1a] text-base tracking-normal leading-normal whitespace-nowrap">
-                      {testimonial.name}
-                    </span>
-                    <span className="font-['Figtree',Helvetica] font-semibold text-[#f58420] text-sm leading-normal tracking-normal">
-                      {testimonial.location}
-                    </span>
+                  <div className="flex justify-between text-sm font-semibold">
+                    <span className="text-[#1a1a1a]">{t.name}</span>
+                    <span className="text-[#f58420]">{t.location}</span>
                   </div>
                 </CardContent>
               </Card>
-            </CarouselItem>
+            </div>
           ))}
-        </CarouselContent>
-      </Carousel>
+        </div>
+
+        {/* nice draggable scrollbar for desktop users */}
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
     </section>
   );
 };

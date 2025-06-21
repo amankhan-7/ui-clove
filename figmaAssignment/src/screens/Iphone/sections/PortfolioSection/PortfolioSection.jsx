@@ -34,75 +34,83 @@ export const PortfolioSection = () => {
     },
   ];
 
+
   return (
-    <div className="flex flex-col w-full items-start gap-5 relative">
-      <div className="flex flex-col items-center justify-center gap-2 self-stretch w-full relative">
-        <h2 className="relative w-fit mt-[-1.00px] font-bold text-text-1 text-xl tracking-[0] leading-[26px] whitespace-nowrap">
+    <div className="flex flex-col w-full items-center gap-5 px-4 max-w-[358px] md:max-w-6xl mx-auto md:pl-30">
+      {/* ─────── Header ─────── */}
+      <div className="flex flex-col items-center gap-2 w-full">
+        <h2 className="font-bold text-text-1 text-xl md:text-2xl leading-[26px] text-center">
           Safety, Precision, and Innovation
         </h2>
-        <p className="relative self-stretch font-normal text-text-1 text-base text-center tracking-[0] leading-[20.8px]">
+        <p className="font-normal text-text-1 text-base md:text-lg text-center leading-[20.8px] md:leading-7">
           Advanced care with top safety, sterilization, and technology
         </p>
       </div>
 
-      <div className="flex items-start gap-4 relative self-stretch w-full mb-[-0.41px] overflow-x-scroll">
-        {portfolioCards.map((card) => (
-          <Card
-            key={card.id}
-            className="flex flex-col w-[300px] items-start rounded-[20px] relative overflow-hidden border-none shadow-none"
-          >
-            <div className="relative self-stretch w-full h-[200px] overflow-hidden border border-solid border-[#d0d0d0]">
-              <img
-                className={`absolute ${card.imageStyle}`}
-                alt="Card Visual"
-                src={card.image}
-              />
-            </div>
-
-            <CardContent
-              className={`flex flex-col items-start justify-center gap-2 p-4 relative self-stretch w-full ${card.backgroundColor}`}
+      {/* ─────── Horizontal Scrollable Cards ─────── */}
+      <div className="w-full overflow-x-auto">
+        <div className="flex flex-nowrap gap-4 w-fit">
+          {portfolioCards.map((card) => (
+            <Card
+              key={card.id}
+              className="flex-shrink-0 w-[300px] rounded-[20px] overflow-hidden border-none shadow-none"
             >
-              <div className="flex flex-col items-start gap-2 self-stretch w-full relative">
-                <div className="flex items-center gap-[23px] relative self-stretch w-full">
-                  {card.isSpecial ? (
-                    <div className="relative w-fit mt-[-1.00px] font-bold text-transparent text-lg tracking-[0] leading-[21.6px]">
-                      <span className="text-white">Experience</span>
-                      <span className="text-white text-2xl leading-[28.8px]">
-                        {" "}
-                        AIPS
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="relative w-fit mt-[-1.00px] font-bold text-white text-lg tracking-[0] leading-[21.6px] whitespace-pre-line">
-                      {card.title}
-                    </div>
-                  )}
-
-                  <img
-                    className="relative flex-1 grow h-px"
-                    alt="Divider"
-                    src="https://c.animaapp.com/mc62a6vvA7qsij/img/vector-72.svg"
-                  />
-                </div>
-
-                <div className="relative self-stretch font-normal text-white text-sm tracking-[0] leading-[18.2px]">
-                  {card.description}
-                </div>
+              {/* Image Section */}
+              <div className="relative w-full h-[200px] overflow-hidden border border-solid border-[#d0d0d0]">
+                <img
+                  className={`absolute ${card.imageStyle}`}
+                  alt="Card Visual"
+                  src={card.image}
+                />
               </div>
 
-              <CardFooter className="inline-flex items-center gap-4 relative p-0 mt-2">
-                <div className="relative w-fit font-semibold text-[#f58420] text-sm tracking-[0] leading-[18.2px] whitespace-nowrap">
-                  Learn More
+              {/* Content Section */}
+              <CardContent
+                className={`flex flex-col items-start justify-center gap-2 p-4 w-full ${card.backgroundColor}`}
+              >
+                <div className="flex flex-col items-start gap-2 w-full">
+                  <div className="flex items-center gap-[23px] w-full">
+                    {card.isSpecial ? (
+                      <div className="font-bold text-transparent text-lg">
+                        <span className="text-white">Experience</span>
+                        <span className="text-white text-2xl leading-[28.8px]">
+                          {" "}
+                          AIPS
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="font-bold text-white text-lg whitespace-pre-line">
+                        {card.title}
+                      </div>
+                    )}
+
+                    <img
+                      className="flex-1 grow h-px"
+                      alt="Divider"
+                      src="https://c.animaapp.com/mc62a6vvA7qsij/img/vector-72.svg"
+                    />
+                  </div>
+
+                  <div className="font-normal text-white text-sm leading-[18.2px]">
+                    {card.description}
+                  </div>
                 </div>
-                <img
-                  className="relative w-[27px] h-[25.41px]"
-                  alt="Arrow Icon"
-                  src="https://c.animaapp.com/mc62a6vvA7qsij/img/frame-2609486.svg"
-                />
-              </CardFooter>
-            </CardContent>
-          </Card>
-        ))}
+
+                {/* Footer CTA */}
+                <CardFooter className="inline-flex items-center gap-4 mt-2 p-0">
+                  <div className="font-semibold text-[#f58420] text-sm whitespace-nowrap">
+                    Learn More
+                  </div>
+                  <img
+                    className="w-[27px] h-[25.41px]"
+                    alt="Arrow Icon"
+                    src="https://c.animaapp.com/mc62a6vvA7qsij/img/frame-2609486.svg"
+                  />
+                </CardFooter>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
