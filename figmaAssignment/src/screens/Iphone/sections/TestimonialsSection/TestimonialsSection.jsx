@@ -65,7 +65,7 @@ export const TestimonialsSection = () => {
         >
           <CardContent className="p-0 flex flex-col items-start gap-2">
             <img
-              className="w-[200px] h-[360px] object-cover"
+              className="w-[200px] h-[360px] object-cover rounded-lg"
               alt={`${testimonial.name}'s testimonial`}
               src={testimonial.image}
             />

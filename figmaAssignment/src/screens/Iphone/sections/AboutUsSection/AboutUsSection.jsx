@@ -62,16 +62,46 @@ export const AboutUsSection = () => {
       </ScrollArea>
 
       {/* ──────────────── DESKTOP/LAPTOP (full grid) ──────────────── */}
-      <div className="hidden md:grid w-full h-auto grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 md:pl-80">
-        {treatmentCards.map((card) => (
-          <Card
-            key={card.id}
-            className="rounded-[20px] overflow-hidden border border-[#ffdfc4] h-full"
-          >
-            <CardContentWrapper card={card} />
-          </Card>
-        ))}
+  <div className="hidden md:flex flex-row justify-center gap-8">
+  {treatmentCards.map((card) => (
+    <div
+      key={card.id}
+      className="flex w-[600px] h-[300px] rounded-[20px] overflow-hidden border border-[#ffdfc4] bg-white"
+    >
+      {/* Image Section (Left) */}
+      <div className="w-1/2 h-full">
+        <img
+          src={card.image}
+          alt={card.title}
+          className="w-full h-full object-cover"
+        />
       </div>
+
+      {/* Text Section (Right) */}
+      <div className="w-1/2 h-full p-4 flex flex-col justify-between">
+        <div>
+          <h2 className="text-xl font-semibold mb-1">{card.title}</h2>
+          <p className="text-sm text-gray-600 mb-2">{card.description}</p>
+          <h1 className='font-bold text-black '>Types of RCT</h1>
+          <ul className="text-sm list-disc pl-4 text-gray-500 mb-4">
+            {card.types.map((type, index) => (
+              <li key={index}>{type}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Price and Button */}
+        <div>
+          <div className="text-left font-bold text-black mb-2">{card.price}</div>
+          <button className="w-full bg-[#f58420] text-white py-2 px-4 rounded-4xl hover:bg-[#e96c50] transition duration-300">
+            Get Free Consultation
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
     </section>
   );
 };
